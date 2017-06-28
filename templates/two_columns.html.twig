@@ -1,0 +1,22 @@
+<div class="row">
+  {# Колонка с результатом обработки шаблона - содержимое блока column_left будет задано в файле exampleNNN.html.twig #}
+  <div class="col-sm-6">
+    <div class="container">
+      {% block column_left %}This content must be replaced with "embed".{% endblock %}
+    </div>
+  </div>
+
+  {# Колонка с текстом источника шаблона - содержимое задаём прямо здесь #}
+  <div class="col-sm-6">
+    <div class="container">
+      {% block column_right %}
+        <h3>Исходный шаблон:<code>{{ source_name }}</code>
+        </h3>
+        <h4>{{ source_path }}</h4>
+        <blockquote>
+          <pre>{{ source_code }}</pre>
+        </blockquote>
+      {% endblock %}
+    </div>
+  </div>
+</div>

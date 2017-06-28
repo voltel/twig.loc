@@ -1,0 +1,21 @@
+{
+    "name": "voltel/twig.loc",
+    "description": "Learning to use twig 2.x",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Volodymyr Telnov",
+            "email": "volodymyr.telnov@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.3",
+        "silex/silex": "~2.0",
+        "monolog/monolog": "*"
+    },
+	"autoload": {
+		"psr-4" : {
+			"App\\": "src/App/"
+		}
+	}
+}

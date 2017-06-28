@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<section>
+  {% embed 'two_columns.html.twig' %}
+    {# This block will replace the column_left block from two_columns.twig.html #}
+    {% block column_left %}
+      <h1><code>autoescape</code>block</h1>
+      <h3>Эскейпингу подвергаются только переменные и выражения</h3>
+
+      {% set c_message_1 = 'Эскейпинг выполняется &copy; потому что <strong>it&apos;s a variable</strong>.' %}
+      {% set c_message_2 = 'Ничего здесь &copy; is going to be escaped <strong>because of the &quot;|raw&quot; filter for the variable</strong>.' %}
+
+      {% autoescape %}
+        <p>Nothing here &copy; is going to be escaped because <strong>it&apos;s a string literal</strong>. </p>
+        <p>Эскейпинг выполняется, так как это {{ '<strong>выражение' ~ '</strong>' }}.</p>
+        <p>{{ c_message_1 }}</p>
+        <p>{{ c_message_2|raw }}</p>
+      {% endautoescape %}
+
+      <h3>Пример авто эскейпинга в формате 'js'.</h3>
+      <blockquote>
+        <pre>
+        {%- autoescape 'js' %}
+            var cMessage = "{{ c_message_1 }}";
+
+            function doPrintMessage(cMessage) {
+                console.log(cMessage);
+                alert(cMessage);
+            }//комментарии
+
+            doPrintMessage("{{ 'Expression: ' ~ c_message_2 }}");
+        {% endautoescape -%}
+        </pre>
+      </blockquote>
+    {% endblock %}
+
+  {% endembed %}
+</section>
+
+{% endblock %}
